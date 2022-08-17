@@ -86,11 +86,15 @@ for obj in results:
     objType = obj['type']
     comment = obj['comment']
     if objType == "fqdn":
-        subnet = "fqdn-resolves-via-dns"
-    else:
+        subnet = "{0}  ({1})".format(obj['fqdn'],obj['type'])
+    elif objType == "ipmask":
         subnet = obj['subnet']
+    elif objType == "iprange":
+        subnet = "{0}-{1}  ({2})".format(obj['start-ip'],obj['end-ip'],obj['type'])
+    else:
+        subnet = "No-SubnetValue-for-ObjType {0}".format(objType)
     uuid = obj['uuid']
-    print(f'  {name:<50} {subnet:<30}  {comment}')
+    print(f'  {name:<50} {subnet:<42}  {comment}')
 
 print(f'\n--------------------')
 print(f'RESULTS: {numResults}')
