@@ -85,6 +85,7 @@ for obj in results:
     name = obj['name']
     objType = obj['type']
     comment = obj['comment']
+    uuid = obj['uuid']
     if objType == "fqdn":
         subnet = "{0}  ({1})".format(obj['fqdn'],obj['type'])
     elif objType == "ipmask":
@@ -93,13 +94,12 @@ for obj in results:
         subnet = "{0}-{1}  ({2})".format(obj['start-ip'],obj['end-ip'],obj['type'])
     else:
         subnet = "No-SubnetValue-for-ObjType {0}".format(objType)
-    uuid = obj['uuid']
     print(f'  {name:<50} {subnet:<42}  {comment}')
 
 print(f'\n--------------------')
 print(f'RESULTS: {numResults}')
 print(f'vdom: {vdom}')
 print(f'Stat-Code: {statcode}')
-print(f'{url}')
+print(f'{urlPath}{searchString}')
 print(f'\n\n')
 
